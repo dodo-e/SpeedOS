@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Speed OS setup</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="assets/Speed OS logo.png">
+    </head>
+    <body>
+        <h1>Check for Robots</h1>
+        <p>Please complete the following to complete the Check:</p>
+        <button class="g-recaptcha" 
+        data-sitekey="reCAPTCHA_site_key" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+
+ <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
+        <script>
+            function nextPage() {
+                window.location.href = "Robot_Chack.html";
+            }
+        </script>
+    </body>
+</html>
