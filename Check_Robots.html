@@ -6,22 +6,18 @@
     </head>
     <body>
         <h1>Check for Robots</h1>
-        <p>Please complete the following to complete the Check:</p>
+        <p>Click CHECK to check for robots -- powered by reCAPTCHA</p>
         <button class="g-recaptcha" 
         data-sitekey="6LcgYR4tAAAAAP547dwIL1UWHDwfhQJchpwMU5bB" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
+        data-callback="onSubmit" 
+        data-action="submit">Check</button>
 
  <script src="https://www.google.com/recaptcha/api.js"></script>
   <script>
    function onSubmit(token) {
-     document.getElementById("demo-form").submit();
+         window.location.href = "Desktop.html";
+         document.getElementById("demo-form").submit();
    }
  </script>
-        <script>
-            function nextPage() {
-                window.location.href = "404.html";
-            }
-        </script>
     </body>
 </html>

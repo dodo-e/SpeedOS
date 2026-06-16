@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Speed OS Desktop app offers fast access to Pixlr, Google, Office 365, and system settings in a desktop-style web interface.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speed OS Desktop</title>
+        <link rel="icon" href="assets/Speed OS logo.png">
+        <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="stylesheet" href="/style.css">
+
+    </head>
+    <body>
+        <div class="desktop" role="main">
+            <a class="icon app-link" href="https://pixlr.com/" title="Pixlr (photoshop online)" alt="Pixlr">
+                <img src="https://www.freelogovectors.net/wp-content/uploads/2022/05/pixlr_logo_freelogovectors.net_.png" alt="Pixlr"><span data-translate="pixlr">Pixlr</span>
+            </a>
+            <a class="icon app-link" href="https://www.google.com/search?igu=1" title="Google" alt="Google">
+                <img src="https://cdn-icons-png.flaticon.com/256/1199/1199414.png" alt="Google"  fetchpriority="high"><span data-translate="google">Google</span>
+            </a>
+            <a class="icon app-link" href="https://www.microsoft.com/en/microsoft-365" title="Office 365" alt="Office 365">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/free-microsoft-365-logo-icon-svg-download-png-8630405.png" fetchpriority=high alt="Office 365"><span data-translate="office">Office 365</span>
+            </a>
+            <div class="icon" id="news-launch-icon" title="News" alt="News">
+                <img src="Assets/News.png" alt="News"><span data-translate="news">News</span>
+            </div>
+            <div class="icon" id="weather-launch-icon" title="Weather" alt="Weather">
+                <img src="https://raw.githubusercontent.com/breezy-weather/pixel-icon-provider/main/fastlane/metadata/android/en-US/images/icon.png" alt="Weather"><span data-translate="weather">Weather</span>
+            </div>
+            <div class="icon" id="iframe-launch-icon" title="Web Browser" alt="Browser">
+                <img src="https://www.icons101.com/icon_ico/id_79048/browser.ico" alt="Browser"><span data-translate="browser">Browser</span>
+            </div>
+        </div>
+
+        <!-- Taskbar at Bottom Left -->
+        <div id="taskbar" style="position: fixed; bottom: 10px; left: 10px; display: flex; gap: 5px; z-index: 999; background-color: rgba(0, 0, 0, 0.2); padding: 5px; border-radius: 8px; backdrop-filter: blur(10px);"></div>
+
+        <!-- News Window -->
+        <div class="window" id="news-feed-window" style="display: none; top: 50px; left: 50px;">
+            <div class="window-header drag-handle">
+                <span class="window-title">📰 Latest News</span>
+                <div class="window-buttons">
+                    <button id="minimize-news-button" class="window-control-btn" title="Minimize" style="opacity: 0.5;">▬</button>
+                    <button id="maximize-news-button" class="window-control-btn" title="Maximize">▢</button>
+                    <button id="close-news-button">✕</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div id="news-feed" style="width: 100%; color: white;">
+                    <p>Loading news...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Window -->
+        <div class="window" id="weather-window" style="display: none; top: 150px; left: 350px; width: 450px;">
+            <div class="window-header drag-handle">
+                <span class="window-title">🌤️ Weather</span>
+                <div class="window-buttons">
+                    <button id="minimize-weather-button" class="window-control-btn" title="Minimize" style="opacity: 0.5;">▬</button>
+                    <button id="maximize-weather-button" class="window-control-btn" title="Maximize">▢</button>
+                    <button id="close-weather-button">✕</button>
+                </div>
+            </div>
+            <div class="window-body" style="flex-direction: column;">
+                <div id="weather-content" style="width: 100%; color: white; overflow-y: auto;">
+                    <p>Loading weather...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- iFrame Window -->
+        <div class="window" id="iframe-window" style="display: none; top: 100px; left: 100px; height: 70px;">
+            <div class="window-header drag-handle">
+                <span class="window-title">🌐 Web Browser</span>
+                <div class="window-buttons">
+                    <button id="minimize-iframe-button" class="window-control-btn" title="Minimize" style="opacity: 0.5;">▬</button>
+                    <button id="maximize-iframe-button" class="window-control-btn" title="Maximize">▢</button>
+                    <button id="close-iframe-button">✕</button>
+                </div>
+            </div>
+            <div class="window-body" style="flex-direction: column; padding: 0; gap: 0;">
+                <div style="display: flex; gap: 5px; padding: 8px 10px; background-color: rgba(0, 0, 0, 0.3); width: 100%; box-sizing: border-box; flex-shrink: 0; height: 70px; align-items: center;" >
+                    <button id="browser-back-btn" style="padding: 6px 10px; background-color: #ffffff3b; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 18px; backdrop-filter: blur(10px); height: 40px; width: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">←</button>
+                    <button id="browser-forward-btn" style="padding: 6px 10px; background-color: #ffffff3b; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 18px; backdrop-filter: blur(10px); height: 40px; width: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">→</button>
+                    <input type="text" id="iframe-url-input" placeholder="Enter website URL (e.g., google.com/search?igu=1)" style="flex: 1; padding: 6px 8px; border: none; border-radius: 4px; font-size: 24px; height: 40px;">
+                    <button id="iframe-load-button" style="padding: 6px 12px; background-color: #ffffff3b; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; white-space: nowrap; height: 40px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);"><img src="https://cdn-icons-png.flaticon.com/256/3917/3917754.png" alt="search" style="height: 18px; width: auto;"></button>
+                    <div id="browser-user-info" style="padding: 6px 12px; background-color: rgba(211, 22, 195, 0.5); color: white; border-radius: 4px; font-size: 13px; white-space: nowrap; backdrop-filter: blur(10px);"></div>
+                </div>
+                <iframe id="content-iframe" style="width: 100%; flex: 1; border: none;"></iframe>
+            </div>
+        </div>
+
+        <script src="script.JS"></script>
+    </body>
+</html>
